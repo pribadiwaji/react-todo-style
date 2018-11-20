@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, ListGroup, ListGroupItem, Input, Button } from 'reactstrap';
+import { Container, Row, Col, ListGroup, ListGroupItem, Input, Button, InputGroup, InputGroupAddon,
+        ButtonGroup   } from 'reactstrap';
 
 class Todo extends Component{
     state = {
@@ -55,7 +56,7 @@ class Todo extends Component{
         input.addEventListener("keyup", function(event) {
             event.preventDefault();
             if (event.keyCode === 13) {
-                document.getElementById("inputan").click();
+                document.getElementById("savebutton").click();
             }
         });
     }
@@ -132,6 +133,7 @@ class Todo extends Component{
     
     componentDidMount(){
         this.initialVal();
+        this.eventKeyEnter();
     }
     render(){
         return(
@@ -140,17 +142,20 @@ class Todo extends Component{
                     <Row>
                         <Col sm="12" md={{ size: 6, offset: 3 }}>
                             <h1>To Do</h1>
-                            <Input id ='inputan' type='text' onChange = {this.eventChange} value = {this.state.input} placeholder="isikan aktivitasmu"/>
-                            
-                            {this.state.buttonEdit ? (
-                                <div>
-                                    <Button color="primary" onClick = {() => this.handleSaveEdit(this.state.idIndex)}>Edit</Button>
-                                    <Button color="primary" onClick = {() => this.initialVal()}>Batal</Button>
-                                </div>
-                            ):(
-                                <Button color="primary" id="savebutton" onClick = {() =>this.handleSave()}>Simpan</Button>
-                            )}
-                            
+                            <InputGroup>
+                                <Input id ='inputan' type='text' onChange = {this.eventChange} value = {this.state.input} placeholder="isikan aktivitasmu lalu enter/klik simpan"/>
+                                
+                                <InputGroupAddon addonType="append">
+                                    {this.state.buttonEdit ? (
+                                        <ButtonGroup>
+                                            <Button color="secondary" onClick = {() => this.handleSaveEdit(this.state.idIndex)}>Edit</Button>
+                                            <Button color="secondary" onClick = {() => this.initialVal()}>Batal</Button>
+                                        </ButtonGroup>
+                                    ):(
+                                        <Button color="secondary" id="savebutton" onClick = {() =>this.handleSave()}>Simpan</Button>
+                                    )}
+                                </InputGroupAddon>
+                            </InputGroup>
                             <ul>
                                 {this.state.database.map((dataArray, index) => {
                                     return(
@@ -160,8 +165,10 @@ class Todo extends Component{
                                                         <Container>
                                                             <Row>
                                                                 <Col xs="6">{dataArray}</Col>
-                                                                <Col xs="6">
+                                                                <Col xs="2">
                                                                     <Button color="primary" onClick = {() => this.handleDelData(index)}>Hapus</Button>
+                                                                </Col>
+                                                                <Col xs="2">
                                                                     <Button color="primary" onClick = {() => this.handleEditData(index)}>Edit</Button>
                                                                 </Col>
                                                             </Row>
