@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, ListGroup, ListGroupItem } from 'reactstrap';
+import { Container, Row, Col, ListGroup, ListGroupItem, Input, Button } from 'reactstrap';
 
 class Todo extends Component{
     state = {
@@ -140,15 +140,15 @@ class Todo extends Component{
                     <Row>
                         <Col sm="12" md={{ size: 6, offset: 3 }}>
                             <h1>To Do</h1>
-                            <input id ='inputan' type='text' onChange = {this.eventChange} value = {this.state.input} /><br />
+                            <Input id ='inputan' type='text' onChange = {this.eventChange} value = {this.state.input} placeholder="isikan aktivitasmu"/>
                             
                             {this.state.buttonEdit ? (
                                 <div>
-                                    <button onClick = {() => this.handleSaveEdit(this.state.idIndex)}>Edit</button>
-                                    <button onClick = {() => this.initialVal()}>Batal</button>
+                                    <Button color="primary" onClick = {() => this.handleSaveEdit(this.state.idIndex)}>Edit</Button>
+                                    <Button color="primary" onClick = {() => this.initialVal()}>Batal</Button>
                                 </div>
                             ):(
-                                <button id="savebutton" onClick = {() =>this.handleSave()}>Simpan</button>
+                                <Button color="primary" id="savebutton" onClick = {() =>this.handleSave()}>Simpan</Button>
                             )}
                             
                             <ul>
@@ -161,8 +161,8 @@ class Todo extends Component{
                                                             <Row>
                                                                 <Col xs="6">{dataArray}</Col>
                                                                 <Col xs="6">
-                                                                    <button onClick = {() => this.handleDelData(index)}>Hapus</button>
-                                                                    <button onClick = {() => this.handleEditData(index)}>Edit</button>
+                                                                    <Button color="primary" onClick = {() => this.handleDelData(index)}>Hapus</Button>
+                                                                    <Button color="primary" onClick = {() => this.handleEditData(index)}>Edit</Button>
                                                                 </Col>
                                                             </Row>
                                                         </Container>
