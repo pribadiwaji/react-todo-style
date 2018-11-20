@@ -159,9 +159,9 @@ class Todo extends Component{
                             <ul>
                                 {this.state.database.map((dataArray, index) => {
                                     return(
-                                            <div>
-                                                <ListGroup>
-                                                    <ListGroupItem action key={index}>
+                                            
+                                                <ListGroup flush>
+                                                    <ListGroupItem key={index}>
                                                         <Container>
                                                             <Row>
                                                                 <Col xs="6">{dataArray}</Col>
@@ -175,7 +175,7 @@ class Todo extends Component{
                                                         </Container>
                                                     </ListGroupItem>
                                                 </ListGroup>
-                                            </div> 
+                                            
                                     );
                                 })}
                             </ul>
